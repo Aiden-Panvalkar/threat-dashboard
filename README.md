@@ -4,7 +4,7 @@ A real-time cybersecurity threat intelligence dashboard that automatically
 aggregates threat data from multiple industry feeds and uses Google Gemini AI 
 to generate plain-English threat summaries for security teams.
 
-Built as part of a Cybersecurity internship at EY — May 2026.
+Built as part of a Cybersecurity internship at EY.
 
 ---
 
