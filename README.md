@@ -24,6 +24,7 @@ sources in different formats. This dashboard solves that by:
 
 ## 🏗️ Project Architecture
 
+```
 threat-dashboard/
 ├── app/
 │   ├── ai/
@@ -41,6 +42,7 @@ threat-dashboard/
 ├── requirements.txt           # Python dependencies
 ├── .env                       # API keys (never commit this)
 └── .gitignore                 # Git ignore rules
+```
 
 ---
 
