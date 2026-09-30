@@ -87,7 +87,7 @@ pip install -r requirements.txt
 ### 4. Set up API keys
 Create a `.env` file in the root folder:
 
-OTX_API_KEY=your_otx_key_here
+OTX_API_KEY=your_otx_key_here  
 ABUSEIPDB_API_KEY=your_abuseipdb_key_here
 GEMINI_API_KEY=your_gemini_key_here
 
