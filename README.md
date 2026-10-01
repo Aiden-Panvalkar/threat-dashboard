@@ -22,27 +22,49 @@ sources in different formats. This dashboard solves that by:
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard Header & AI Threat Summary
+![Header and AI Summary](screenshots/01-header-summary.png)
+*Gemini-generated plain-English summary of recent threat activity.*
+
+### Recommended Block List & Key Metrics
+![Block List and Metrics](screenshots/02-blocklist-metrics.png)
+*Actionable, downloadable block list of high/medium severity indicators, each with a specific data-grounded reason, alongside live threat metrics.*
+
+### Threats by Source & Severity Breakdown
+![Charts Overview](screenshots/03-charts.png)
+*Live breakdown of threats by feed source and severity level.*
+
+### Top Countries by Threat Count
+![Top Countries](screenshots/04-top-countries.png)
+*Geographic distribution of threat origins, with country codes resolved to full names.*
+
+### Threat Data Explorer
+![Threat Data Explorer](screenshots/05-threat-explorer.png)
+*Filterable, searchable table of all collected indicators of compromise (IOCs).*
+
+---
+
 ## 🏗️ Project Architecture
 
-```
 threat-dashboard/
 ├── app/
-│   ├── ai/
-│   │   └── summarizer.py      # Gemini AI threat summarization
-│   ├── db/
-│   │   ├── database.py        # SQLite connection & initialization
-│   │   └── models.py          # Threat data model
-│   ├── feeds/
-│   │   ├── otx.py             # AlienVault OTX feed fetcher
-│   │   └── abuseipdb.py       # AbuseIPDB feed fetcher
-│   ├── utils/
-│   │   └── normalizer.py      # Data normalization across feeds
-│   └── main.py                # Streamlit dashboard
-├── scheduler.py               # Automated data fetching scheduler
-├── requirements.txt           # Python dependencies
-├── .env                       # API keys (never commit this)
-└── .gitignore                 # Git ignore rules
-```
+│ ├── ai/
+│ │ └── summarizer.py # Gemini AI threat summarization
+│ ├── db/
+│ │ ├── database.py # SQLite connection & initialization
+│ │ └── models.py # Threat data model
+│ ├── feeds/
+│ │ ├── otx.py # AlienVault OTX feed fetcher
+│ │ └── abuseipdb.py # AbuseIPDB feed fetcher
+│ ├── utils/
+│ │ └── normalizer.py # Data normalization across feeds
+│ └── main.py # Streamlit dashboard
+├── scheduler.py # Automated data fetching scheduler
+├── requirements.txt # Python dependencies
+├── .env # API keys (never commit this)
+└── .gitignore # Git ignore rules
 
 ---
 
@@ -124,10 +146,10 @@ older than 7 days.
 ## 📊 Features
 
 - **Live Threat Metrics** — Total threats, high severity count, per-source breakdown
-- **AI Summary** — One-click Gemini-powered plain English threat analysis
+- **AI Summary & Block List** — One-click Gemini-powered threat analysis with an actionable, downloadable list of indicators recommended for blocking
 - **Threats by Source** — Donut chart showing OTX vs AbuseIPDB distribution
 - **Severity Breakdown** — Bar chart of high/medium/low severity threats
-- **Top Countries** — Geographic distribution of threat origins
+- **Top Countries** — Geographic distribution of threat origins, with full country names
 - **Threat Explorer** — Filterable, searchable table of all IOCs
 
 ---
