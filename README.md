@@ -4,7 +4,7 @@ A real-time cybersecurity threat intelligence dashboard that automatically
 aggregates threat data from multiple industry feeds and uses Google Gemini AI 
 to generate plain-English threat summaries for security teams.
 
-Built as part of a Cybersecurity internship at EY — May 2026.
+Built as part of a Cybersecurity internship at EY.
 
 ---
 
@@ -64,7 +64,7 @@ threat-dashboard/
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Aiden-Panvalkar/threat-dashboard.git
 cd threat-dashboard
 ```
 
@@ -87,8 +87,8 @@ pip install -r requirements.txt
 ### 4. Set up API keys
 Create a `.env` file in the root folder:
 
-OTX_API_KEY=your_otx_key_here
-ABUSEIPDB_API_KEY=your_abuseipdb_key_here
+OTX_API_KEY=your_otx_key_here  
+ABUSEIPDB_API_KEY=your_abuseipdb_key_here  
 GEMINI_API_KEY=your_gemini_key_here
 
 Get your free API keys from:
