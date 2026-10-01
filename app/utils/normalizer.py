@@ -1,4 +1,17 @@
 from app.db.models import Threat
+import pycountry
+
+
+def country_code_to_name(code: str) -> str:
+    """Converts a 2-letter ISO country code to its full name."""
+    if not code or code == "Unknown":
+        return "Unknown"
+    try:
+        country = pycountry.countries.get(alpha_2=code.upper())
+        return country.name if country else code
+    except (AttributeError, LookupError):
+        return code
+
 
 def normalize_otx(pulse):
     """Converts a raw OTX pulse indicator into a Threat object."""
@@ -11,7 +24,7 @@ def normalize_otx(pulse):
             indicator_type=indicator.get('type', '').lower(),
             threat_type=pulse.get('name', 'Unknown'),
             severity=get_severity(pulse.get('adversary', '')),
-            country=indicator.get('country_code', 'Unknown'),
+            country=country_code_to_name(indicator.get('country_code', 'Unknown')),
             description=pulse.get('description', '')[:500],
         )
         threats.append(threat)
@@ -29,7 +42,7 @@ def normalize_abuseipdb(entry):
         indicator_type="ip",
         threat_type=get_abuse_type(entry.get('usageType', '')),
         severity=confidence_to_severity(confidence),
-        country=entry.get('countryCode', 'Unknown'),
+        country=country_code_to_name(entry.get('countryCode', 'Unknown')),
         description=f"Abuse confidence: {confidence}%. ISP: {entry.get('isp', 'Unknown')}. Reports: {entry.get('totalReports', 0)}",
     )
 
