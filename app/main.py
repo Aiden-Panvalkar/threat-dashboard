@@ -19,17 +19,38 @@ df = load_data()
 st.title("🛡️ AI-Powered Threat Intelligence Dashboard")
 st.markdown("Live threat data aggregated from AlienVault OTX and AbuseIPDB")
 
-# AI Summary Section
+# AI Summary + Block List Section
 st.divider()
 st.subheader("🤖 AI Threat Summary")
 
 if st.button("Generate Latest Summary"):
     with st.spinner("Analyzing recent threats with Gemini..."):
-        from app.ai.summarizer import generate_summary
-        summary = generate_summary()
-        st.info(summary)
+        from app.ai.summarizer import generate_summary_and_blocklist
+        summary, blocklist = generate_summary_and_blocklist()
+        st.session_state["ai_summary"] = summary
+        st.session_state["ai_blocklist"] = blocklist
 else:
-    st.caption("Click the button above to generate an AI-powered summary of the latest threats.")
+    st.caption("Click the button above to generate an AI-powered summary and recommended block list.")
+
+if "ai_summary" in st.session_state:
+    st.info(st.session_state["ai_summary"])
+
+    st.subheader("🚫 Recommended Block List")
+    blocklist = st.session_state.get("ai_blocklist", [])
+
+    if blocklist:
+        blocklist_df = pd.DataFrame(blocklist)
+        st.dataframe(blocklist_df, use_container_width=True)
+
+        csv_data = blocklist_df.to_csv(index=False)
+        st.download_button(
+            label="Download Block List as CSV",
+            data=csv_data,
+            file_name="recommended_blocklist.csv",
+            mime="text/csv",
+        )
+    else:
+        st.caption("No high/medium severity indicators found to recommend blocking.")
 
 st.divider()
 
